@@ -1,0 +1,32 @@
+---
+import type { Video } from "../data/videos";
+
+interface Props {
+  video: Video;
+}
+
+const { video } = Astro.props;
+const thumb = `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`;
+---
+
+<article class="video-card" data-yt-facade data-youtube-id={video.youtubeId}>
+  <h2 class="video-card__title">{video.title}</h2>
+  <div class="video-card__player">
+    <img
+      class="video-card__thumb"
+      src={thumb}
+      alt=""
+      width="480"
+      height="360"
+      loading="lazy"
+    />
+    <button type="button" class="video-card__play">
+      Odtwórz film
+    </button>
+  </div>
+  <p class="video-card__notice">
+    Odtworzenie ładuje YouTube i może zapisać ciasteczka YouTube.
+  </p>
+</article>
+
+<script src="/yt-facade.js"></script>
