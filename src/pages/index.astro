@@ -1,14 +1,24 @@
 ---
+import AboutHome from "../components/AboutHome.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import MapHome from "../components/MapHome.astro";
+import SeriesAmeryka from "../components/SeriesAmeryka.astro";
+import SeriesEuropa from "../components/SeriesEuropa.astro";
+import SubscribeCta from "../components/SubscribeCta.astro";
+import Base from "../layouts/Base.astro";
 ---
 
-<html lang="pl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Chilimango</title>
-  </head>
-  <body>
-    <h1>Chilimango</h1>
-    <p>Filmy z podróży.</p>
-  </body>
-</html>
+<Base title="Chilimango – filmy z podróży">
+  <Header />
+  <main id="main">
+    <Hero />
+    <SeriesAmeryka />
+    <SeriesEuropa />
+    <MapHome />
+    <AboutHome />
+    <SubscribeCta />
+  </main>
+  <Footer />
+</Base>
