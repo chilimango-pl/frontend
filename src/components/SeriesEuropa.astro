@@ -1,0 +1,25 @@
+---
+import VideoCard from "./VideoCard.astro";
+import { PLAYLIST_IDS, videosByPlaylist } from "../data/videos";
+
+const items = videosByPlaylist("europa");
+const playlistUrl = `https://www.youtube.com/playlist?list=${PLAYLIST_IDS.europa}`;
+---
+
+<section id="eu" class="series countries" aria-labelledby="eu-h">
+  <div class="wrap">
+    <div class="series-head">
+      <div>
+        <span class="eyebrow">Seria · <span class="count">3 filmy</span></span>
+        <h2 id="eu-h">Europa rowerem i samochodem</h2>
+        <p class="lead">Francja, Belgia, Luksemburg i Andora – podróż w czasie pandemii.</p>
+      </div>
+      <a class="btn btn-green" href={playlistUrl} target="_blank" rel="noopener"
+        >Cała playlista na YouTube →</a
+      >
+    </div>
+    <div class="grid3">
+      {items.map((video, index) => <VideoCard video={video} index={index} />)}
+    </div>
+  </div>
+</section>

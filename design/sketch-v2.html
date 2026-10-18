@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chilimango – filmy z podróży (szkic v2)</title>
+<meta name="description" content="Chilimango – filmy z podróży: Ameryka Środkowa z plecakiem i Europa rowerem i samochodem. Szkic strony głównej v2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mango:#FF9F1C; --mango-d:#F07F00; --chili:#E63946; --chili-d:#C1121F;
+  --jungle:#2D6A4F; --jungle-l:#52B788; --cream:#FFF8EC; --cream-2:#FCEFD8;
+  --ink:#2B2118; --muted:#6B5B4B; --white:#fff;
+  --r:22px; --shadow:0 10px 30px rgba(80,40,0,.12);
+  --fh:"Baloo 2", ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --fb:"Nunito", ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--fb);color:var(--ink);background:var(--cream);line-height:1.6;font-size:17px}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--fh);line-height:1.1;margin:0 0 .4em}
+h2{font-size:clamp(1.9rem,3.5vw,2.7rem)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:10px;z-index:100}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--jungle);outline-offset:3px;border-radius:8px}
+.eyebrow{display:inline-block;font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--chili-d);background:#ffe3d1;padding:4px 12px;border-radius:99px;margin-bottom:12px}
+.lead{color:var(--muted);font-size:1.1rem;max-width:62ch}
+section{padding:84px 0}
+.mock-note{background:var(--ink);color:#ffe9c7;text-align:center;font-size:.85rem;padding:6px 12px}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,248,236,.92);backdrop-filter:blur(8px);border-bottom:1px solid #f1e1c6}
+.nav{display:flex;align-items:center;gap:18px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--fh);font-weight:800;font-size:1.75rem;letter-spacing:-.01em}
+.logo .chili{color:var(--chili)} .logo .mango{color:var(--mango-d)}
+.logo-mark{width:40px;height:40px}
+.menu{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0}
+.menu a{display:block;text-decoration:none;font-weight:700;padding:8px 12px;border-radius:99px}
+.menu a:hover{background:var(--cream-2)}
+.soon{font-size:.68rem;font-weight:800;background:var(--jungle);color:#fff;border-radius:99px;padding:1px 7px;margin-left:4px;vertical-align:2px}
+.lang{display:flex;background:var(--white);border:2px solid #f1dcb8;border-radius:99px;padding:3px}
+.lang button{font:inherit;font-weight:800;font-size:.8rem;border:0;background:none;padding:5px 10px;border-radius:99px;cursor:pointer;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--mango);color:var(--ink)}
+.burger{display:none;margin-left:auto;border:0;background:var(--white);border-radius:12px;width:44px;height:44px;font-size:1.4rem;cursor:pointer;box-shadow:var(--shadow)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;padding:14px 24px;border-radius:99px;border:0;cursor:pointer;font:inherit;font-weight:800;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{background:var(--chili);color:#fff;box-shadow:0 8px 20px rgba(230,57,70,.35)}
+.btn-light{background:var(--white);color:var(--ink)}
+.btn-green{background:var(--jungle);color:#fff}
+
+/* hero */
+.hero{padding:28px 0 0}
+.hero-frame{position:relative;border-radius:34px;overflow:hidden;min-height:620px;display:flex;align-items:flex-end;color:#fff;box-shadow:var(--shadow);
+  background:linear-gradient(180deg,#ffb347 0%,#ff8c42 32%,#e8604c 55%,#7a3b5e 78%,#1f3b4d 100%);isolation:isolate}
+.hero-frame::before{content:"";position:absolute;inset:-20%;z-index:-2;
+  background:radial-gradient(circle at 70% 38%,#fff4c2 0 7%,rgba(255,240,180,.0) 16%),
+             radial-gradient(ellipse at 20% 110%,#1b4332 0 40%,transparent 41%),
+             radial-gradient(ellipse at 75% 115%,#2d6a4f 0 38%,transparent 39%),
+             radial-gradient(ellipse at 45% 125%,#081c15 0 42%,transparent 43%);
+  animation:drift 18s ease-in-out infinite alternate}
+.hero-frame::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(20,10,5,.65),rgba(20,10,5,0) 60%)}
+@keyframes drift{from{transform:translateX(-3%) scale(1)}to{transform:translateX(3%) scale(1.06)}}
+.waves{position:absolute;left:0;right:0;bottom:22%;z-index:-1;opacity:.35;animation:waves 9s linear infinite}
+@keyframes waves{to{transform:translateX(-50%)}}
+.rec{position:absolute;top:22px;left:24px;right:24px;display:flex;justify-content:space-between;font:700 .8rem/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.rec .dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#ff2d2d;margin-right:8px;animation:blink 1.2s steps(2) infinite;vertical-align:-1px}
+@keyframes blink{50%{opacity:0}}
+.corners{position:absolute;inset:16px;pointer-events:none;
+  background:linear-gradient(#fff,#fff) top left/26px 3px,linear-gradient(#fff,#fff) top left/3px 26px,
+  linear-gradient(#fff,#fff) top right/26px 3px,linear-gradient(#fff,#fff) top right/3px 26px,
+  linear-gradient(#fff,#fff) bottom left/26px 3px,linear-gradient(#fff,#fff) bottom left/3px 26px,
+  linear-gradient(#fff,#fff) bottom right/26px 3px,linear-gradient(#fff,#fff) bottom right/3px 26px;background-repeat:no-repeat;opacity:.8}
+.placeholder-tag{position:absolute;top:56px;right:24px;background:rgba(0,0,0,.35);border:1px dashed rgba(255,255,255,.7);padding:6px 12px;border-radius:12px;font-size:.78rem}
+.hero-content{padding:48px;max-width:760px}
+.hero h1{font-size:clamp(2.4rem,5.6vw,4.4rem);font-weight:800;text-shadow:0 3px 16px rgba(0,0,0,.25)}
+.hero h1 em{font-style:normal;color:#ffd166}
+.hero p{font-size:1.2rem;max-width:52ch;opacity:.95}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+.pause{position:absolute;bottom:22px;right:24px;background:rgba(0,0,0,.35);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:99px;padding:8px 14px;font:inherit;font-size:.85rem;cursor:pointer}
+.paused .hero-frame::before,.paused .waves,.paused .rec .dot{animation-play-state:paused}
+
+/* episodes */
+.row-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.yt{position:relative;aspect-ratio:16/9;border:0;width:100%;padding:0;cursor:pointer;display:block;color:#fff}
+.yt .ph{position:absolute;inset:0}
+.yt .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:50px;border-radius:14px;background:var(--chili);display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3);transition:transform .15s}
+.yt:hover .play{transform:translate(-50%,-50%) scale(1.08)}
+.yt .play::after{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
+.yt .badge{position:absolute;left:12px;top:12px;background:rgba(0,0,0,.45);font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:99px}
+.yt .dur{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);font-size:.75rem;font-weight:700;padding:2px 7px;border-radius:6px}
+.card-body{padding:18px 20px 22px}
+.card-body h3{font-size:1.3rem}
+.meta{font-size:.85rem;color:var(--muted);font-weight:700}
+.ph-1{background:linear-gradient(135deg,#ffd166,#f77f00 55%,#d62828)}
+.ph-2{background:linear-gradient(135deg,#90e0ef,#2a9d8f 50%,#264653)}
+.ph-3{background:linear-gradient(135deg,#b7e4c7,#52b788 45%,#1b4332)}
+.ph svg{position:absolute;inset:0;width:100%;height:100%;opacity:.35}
+.note{font-size:.85rem;color:var(--muted);margin-top:16px}
+
+/* countries */
+.countries{background:var(--white);border-radius:40px;margin:0 12px}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+.country{display:flex;align-items:center;gap:16px;text-decoration:none;padding:20px 22px;border-radius:var(--r);background:var(--cream);border:2px solid transparent;transition:.15s}
+.country:hover{border-color:var(--mango);transform:translateY(-3px)}
+.flag{font-size:2.4rem;line-height:1}
+.country h3{font-size:1.35rem;margin:0}
+.country span{font-size:.88rem;color:var(--muted);font-weight:700}
+.country .num{margin-left:auto;font-family:var(--fh);font-weight:800;color:var(--mango-d);font-size:1.5rem}
+
+/* map */
+.map-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+.map-card{background:#dff3ea;border-radius:34px;padding:22px;position:relative;box-shadow:var(--shadow)}
+.map-card .szkic{position:absolute;top:16px;right:18px;background:var(--white);font-weight:800;font-size:.75rem;padding:4px 10px;border-radius:99px;color:var(--jungle)}
+.route{list-style:none;padding:0;margin:24px 0 0;counter-reset:s}
+.route li{counter-increment:s;display:flex;gap:14px;align-items:center;padding:10px 0;border-bottom:2px dashed #f0dcc0;font-weight:700}
+.route li::before{content:counter(s);width:34px;height:34px;flex:none;border-radius:50%;background:var(--chili);color:#fff;display:grid;place-items:center;font-family:var(--fh)}
+.route small{color:var(--muted);font-weight:600;margin-left:auto}
+#mapa svg .dash{animation:dash 3s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-40}}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.family{background:var(--cream-2);border-radius:40px;padding:30px;box-shadow:inset 0 0 0 3px #f6dfb8}
+.tri{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.tri span{background:var(--white);border-radius:99px;padding:8px 16px;font-weight:800;box-shadow:var(--shadow)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.fact{background:var(--white);border-radius:18px;padding:16px}
+.fact b{display:block;font-family:var(--fh);font-size:1.15rem}
+
+/* soon */
+.soon-sec{background:linear-gradient(180deg,var(--cream),#ffe8c7)}
+.soon-card{padding:28px;border-radius:var(--r);background:var(--white);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.soon-card .ico{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;font-size:2rem}
+.soon-card .tag{position:absolute;top:18px;right:18px;font-size:.72rem;font-weight:800;background:#ffe3d1;color:var(--chili-d);padding:3px 10px;border-radius:99px}
+.soon-card p{color:var(--muted);margin:0 0 8px;flex:1}
+.soon-card .btn{align-self:flex-start;padding:10px 20px}
+
+/* newsletter */
+.news{background:var(--jungle);color:#fff;border-radius:40px;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.news::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:var(--mango);opacity:.25}
+.news h2 em{font-style:normal;color:#ffd166}
+.news p{opacity:.92}
+.form{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}
+.form label{font-weight:800;font-size:.9rem}
+.form .inrow{display:flex;gap:10px;flex-wrap:wrap}
+.form input[type=email]{flex:1;min-width:200px;font:inherit;padding:14px 18px;border-radius:99px;border:0}
+.form .chk{display:flex;gap:8px;font-size:.8rem;opacity:.9;align-items:flex-start}
+.freebie{display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.1);padding:14px;border-radius:18px;margin-top:18px}
+.freebie .sheet{width:64px;height:84px;flex:none;border-radius:8px;background:var(--cream);transform:rotate(-6deg);box-shadow:4px 6px 0 var(--mango);display:grid;place-items:center;font-size:1.8rem}
+
+/* footer */
+footer{background:var(--ink);color:#f6e7d0;padding:56px 0 32px;margin-top:84px}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px}
+footer h3{font-size:1.1rem;color:#fff}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+footer a{text-decoration:none;opacity:.85} footer a:hover{opacity:1;text-decoration:underline}
+.social{display:flex;gap:10px;margin-top:16px}
+.social a{display:inline-flex;gap:8px;align-items:center;background:#3d3127;padding:10px 14px;border-radius:14px;opacity:1;font-weight:700}
+.copy{border-top:1px solid #4a3c30;margin-top:36px;padding-top:20px;font-size:.85rem;opacity:.7;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* responsive */
+@media (max-width:980px){
+  .menu{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:var(--cream);padding:12px 22px 20px;border-bottom:1px solid #f1e1c6}
+  .menu.open{display:flex}
+  .burger{display:block}
+  .lang{margin-left:0}
+  .grid3,.cgrid{grid-template-columns:1fr 1fr}
+  .map-wrap,.about,.news{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  section{padding:60px 0}
+  .nav{gap:10px}
+  .logo{font-size:1.45rem}.logo-mark{width:34px;height:34px}
+  .lang button{padding:4px 7px}
+  .hero-frame{min-height:560px;border-radius:26px}
+  .hero-content{padding:64px 22px 78px}
+  .pause{left:24px;right:auto}
+  .placeholder-tag{display:none}
+  .grid3,.cgrid,.facts{grid-template-columns:1fr}
+  .news{padding:32px 24px;border-radius:30px}
+  .countries{border-radius:28px;margin:0 8px}
+  .fgrid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.yt{background:#000;overflow:hidden}
+.yt .thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.yt:hover .thumb{transform:scale(1.04)}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.vcard .card-body{padding:14px 16px 18px}.vcard h3{font-size:1.02rem;line-height:1.3;font-family:var(--fb);font-weight:800}
+.vcard[hidden],.more[hidden]{display:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.chips button{font:inherit;font-weight:800;font-size:.9rem;border:2px solid #f1dcb8;background:var(--white);padding:7px 14px;border-radius:99px;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.series{padding:72px 0}
+.series-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:18px}
+.count{font-family:var(--fh);font-weight:800;color:var(--mango-d)}
+.more{display:flex;justify-content:center;margin-top:26px}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:end;padding:48px;width:100%}
+.hero-grid .hero-content{padding:0}
+.feature{background:rgba(255,255,255,.12);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.35);border-radius:24px;padding:12px}
+.feature .yt{border-radius:16px}
+.feature p{margin:10px 6px 2px;font-size:.92rem}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.88rem;font-weight:700;margin-top:10px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:6px;vertical-align:-2px}
+.cgroup h3{font-size:1.2rem;margin:26px 0 0}
+.map-wrap>*,.about>*{min-width:0}
+.cgrid2{grid-template-columns:1fr 1fr;margin-top:12px}
+.country{min-width:0}
+.plan{border:2px dashed var(--jungle-l)!important;background:#f1faf4!important}
+.plan .num{white-space:nowrap;font-size:.75rem;background:var(--jungle);color:#fff;padding:3px 9px;border-radius:99px;font-family:var(--fb)}
+.inset{background:#dff3ea;border-radius:24px;padding:12px;margin-top:18px;position:relative}
+.sub{background:var(--chili);color:#fff;border-radius:40px;padding:48px;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center}
+.sub p{opacity:.95}
+@media (max-width:1100px){.grid4{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}.sub{grid-template-columns:1fr}}
+@media (max-width:620px){.cgrid2{grid-template-columns:1fr}.hero-grid{padding:64px 22px 78px}.grid4{grid-template-columns:1fr}.sub{padding:30px 22px;border-radius:30px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Przejdź do treści</a>
+<div class="mock-note" role="note">Szkic v2 strony chilimango.pl – filmy, tytuły i miniatury pochodzą z kanału YouTube @Chilimango</div>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#" aria-label="Chilimango – strona główna">
+      <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6c11 0 18 9 18 19S34 44 24 44 6 35 6 25 13 6 24 6z" fill="#FF9F1C"/><path d="M24 6c-3-4 2-6 6-4-1 3-3 4-6 4z" fill="#2D6A4F"/><path d="M14 26c4 6 14 8 20 2" stroke="#E63946" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="18" cy="20" r="2.4" fill="#2B2118"/><circle cx="30" cy="20" r="2.4" fill="#2B2118"/></svg>
+      <span><span class="chili">Chili</span><span class="mango">mango</span></span>
+    </a>
+    <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Otwórz menu">☰</button>
+    <ul class="menu" id="menu">
+      <li><a href="#serie">Podróże / Serie</a></li>
+      <li><a href="#mapa">Mapa</a></li>
+      <li><a href="#o-nas">O nas</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="Wybór języka (szkic)">
+      <button aria-pressed="true" lang="pl">PL</button><button aria-pressed="false" lang="en">EN</button><button aria-pressed="false" lang="es">ES</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="hero-frame" id="heroFrame">
+        <svg class="waves" width="200%" height="120" viewBox="0 0 2400 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60 Q150 0 300 60 T600 60 T900 60 T1200 60 T1500 60 T1800 60 T2100 60 T2400 60 V120 H0Z" fill="#fff"/></svg>
+        <div class="rec" aria-hidden="true"><span><span class="dot"></span>REC · 360°</span><span id="tc">00:00:00</span></div>
+        <div class="corners" aria-hidden="true"></div>
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="eyebrow" style="background:#fff3;color:#fff">Filmy z podróży · kanał @Chilimango</span>
+            <h1 id="hero-h">Rodzina w drodze. <em>Dwie małe podróżniczki,</em> trzy języki, jeden plecak.</h1>
+            <p>Na kanale: 3 miesiące z plecakiem po Ameryce Środkowej i Europa rowerem i samochodem. Następną wyprawę planujemy już we czwórkę.</p>
+            <div class="ctas">
+              <a class="btn btn-red" href="https://www.youtube.com/@Chilimango" target="_blank" rel="noopener"><svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" rx="4" fill="#fff"/><path d="M9 4.5v7l6-3.5z" fill="#E63946"/></svg>Oglądaj na YouTube</a>
+              <a class="btn btn-light" href="#mapa">🗺️ Zobacz trasę</a>
+            </div>
+          </div>
+          <div class="feature">
+            <button class="yt" data-id="0kEZ_dyK3wc" aria-label="Odtwórz zwiastun: Ameryka Środkowa i Dominikana z Plecakiem w 3 Miesiące">
+              <img class="thumb" src="thumbs/max_0kEZ_dyK3wc.jpg" alt="" width="1280" height="720"><span class="play"></span><span class="dur">1:46</span>
+            </button>
+            <p><b>Zacznij tutaj:</b> Ameryka Środkowa i Dominikana z plecakiem w 3 miesiące</p>
+          </div>
+        </div>
+        <button class="pause" id="pauseBtn" aria-pressed="false">❚❚ Zatrzymaj animację</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="serie"></div>
+  <section id="ca" class="series" aria-labelledby="ca-h">
+    <div class="wrap">
+      <div class="series-head">
+        <div><span class="eyebrow">Seria · <span class="count">20 filmów</span></span>
+        <h2 id="ca-h">Ameryka Środkowa z plecakiem</h2>
+        <p class="lead">Dominikana, Kostaryka, Nikaragua, Salwador, Gwatemala i Meksyk – 3 miesiące, 19 odcinków i zwiastun.</p></div>
+        <a class="btn btn-green" href="https://www.youtube.com/playlist?list=PLPaMIRjW6qqvB2Fgh32HcM4wttnOQ1u5I" target="_blank" rel="noopener">Cała playlista na YouTube →</a>
+      </div>
+      <div class="chips" role="group" aria-label="Filtruj odcinki według kraju">
+        <button aria-pressed="true" data-f="*">Wszystkie</button><button aria-pressed="false" data-f="do">🇩🇴 Dominikana</button><button aria-pressed="false" data-f="cr">🇨🇷 Kostaryka</button><button aria-pressed="false" data-f="ni">🇳🇮 Nikaragua</button><button aria-pressed="false" data-f="sv">🇸🇻 Salwador</button><button aria-pressed="false" data-f="gt">🇬🇹 Gwatemala</button><button aria-pressed="false" data-f="mx">🇲🇽 Meksyk</button>
+      </div>
+      <div class="grid4" id="caGrid">
+<article class="card vcard" data-c="all">
+  <button class="yt" data-id="0kEZ_dyK3wc" aria-label="Odtwórz: Ameryka Środkowa i Dominikana z Plecakiem w 3 Miesiące / 4K">
+    <img class="thumb" src="thumbs/0kEZ_dyK3wc.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">1:46</span>
+  </button>
+  <div class="card-body"><p class="meta">🌎 Cała wyprawa · 2020</p><h3>Ameryka Środkowa i Dominikana z Plecakiem w 3 Miesiące / 4K</h3></div>
+</article>
+<article class="card vcard" data-c="do">
+  <button class="yt" data-id="mrvSIZmhyHM" aria-label="Odtwórz: #1 Dominikana - Wakacje na Karaibach | Jak Samodzielnie Podróżować | 4K">
+    <img class="thumb" src="thumbs/mrvSIZmhyHM.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">10:29</span>
+  </button>
+  <div class="card-body"><p class="meta">🇩🇴 Dominikana · 2020</p><h3>#1 Dominikana - Wakacje na Karaibach | Jak Samodzielnie Podróżować | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="cr">
+  <button class="yt" data-id="9TE8NQts6S0" aria-label="Odtwórz: #2 Kostaryka | Czy Wejście na Aktywny WULKAN Jest Bezpieczne? | Krokodyle i Leniwce | 4K">
+    <img class="thumb" src="thumbs/9TE8NQts6S0.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">12:38</span>
+  </button>
+  <div class="card-body"><p class="meta">🇨🇷 Kostaryka · 2020</p><h3>#2 Kostaryka | Czy Wejście na Aktywny WULKAN Jest Bezpieczne? | Krokodyle i Leniwce | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="cr">
+  <button class="yt" data-id="z58JuftX_Yc" aria-label="Odtwórz: #3 Kostaryka | Idziemy na Cmentarz Dnem Oceanu Spokojnego | 4K">
+    <img class="thumb" src="thumbs/z58JuftX_Yc.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">11:22</span>
+  </button>
+  <div class="card-body"><p class="meta">🇨🇷 Kostaryka · 2020</p><h3>#3 Kostaryka | Idziemy na Cmentarz Dnem Oceanu Spokojnego | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="cr">
+  <button class="yt" data-id="tbEMn5TWEuU" aria-label="Odtwórz: #4 Kostaryka - Uratowaliśmy Żółwie | Niezwykła Wycieczka | 4K">
+    <img class="thumb" src="thumbs/tbEMn5TWEuU.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">7:00</span>
+  </button>
+  <div class="card-body"><p class="meta">🇨🇷 Kostaryka · 2020</p><h3>#4 Kostaryka - Uratowaliśmy Żółwie | Niezwykła Wycieczka | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="ni">
+  <button class="yt" data-id="Ks5k02lShrU" aria-label="Odtwórz: #5 Nikaragua - Mieszkamy z Rodziną | Nauka Hiszpańskiego i Surfing | 4K">
+    <img class="thumb" src="thumbs/Ks5k02lShrU.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">8:55</span>
+  </button>
+  <div class="card-body"><p class="meta">🇳🇮 Nikaragua · 2020</p><h3>#5 Nikaragua - Mieszkamy z Rodziną | Nauka Hiszpańskiego i Surfing | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="ni">
+  <button class="yt" data-id="XRNZnQu6Mvs" aria-label="Odtwórz: #6 Nikaragua | Przeprawiamy Się Przez NAJWIĘKSZE JEZIORO Ameryki Środkowej | 4K">
+    <img class="thumb" src="thumbs/XRNZnQu6Mvs.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">9:31</span>
+  </button>
+  <div class="card-body"><p class="meta">🇳🇮 Nikaragua · 2020</p><h3>#6 Nikaragua | Przeprawiamy Się Przez NAJWIĘKSZE JEZIORO Ameryki Środkowej | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="ni">
+  <button class="yt" data-id="8Dou9BRpJuc" aria-label="Odtwórz: #7 Dlaczego Nie Ma Turystów Na Wyspie Ometepe? | Nikaragua | 4K">
+    <img class="thumb" src="thumbs/8Dou9BRpJuc.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">12:24</span>
+  </button>
+  <div class="card-body"><p class="meta">🇳🇮 Nikaragua · 2020</p><h3>#7 Dlaczego Nie Ma Turystów Na Wyspie Ometepe? | Nikaragua | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="ni" data-more>
+  <button class="yt" data-id="l39AQwp_80s" aria-label="Odtwórz: #8 Niezwykłe Nocne Rozbłyski Fal Oceanicznych - Bioluminescencja | Nikaragua | 4k">
+    <img class="thumb" src="thumbs/l39AQwp_80s.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">10:36</span>
+  </button>
+  <div class="card-body"><p class="meta">🇳🇮 Nikaragua · 2020</p><h3>#8 Niezwykłe Nocne Rozbłyski Fal Oceanicznych - Bioluminescencja | Nikaragua | 4k</h3></div>
+</article>
+<article class="card vcard" data-c="ni" data-more>
+  <button class="yt" data-id="7-3rGVgGZrE" aria-label="Odtwórz: #9 Straciliśmy Bilety za 4700 zł i Nie Możemy Wrócić do Polski | Granada Nikaragua | 4K">
+    <img class="thumb" src="thumbs/7-3rGVgGZrE.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">9:40</span>
+  </button>
+  <div class="card-body"><p class="meta">🇳🇮 Nikaragua · 03.05.2020</p><h3>#9 Straciliśmy Bilety za 4700 zł i Nie Możemy Wrócić do Polski | Granada Nikaragua | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="ni" data-more>
+  <button class="yt" data-id="ksFhQG2UzcY" aria-label="Odtwórz: #10 Piekielne Jezioro Lawy | Wulkan Masaya Nikaragua | 4K">
+    <img class="thumb" src="thumbs/ksFhQG2UzcY.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">7:21</span>
+  </button>
+  <div class="card-body"><p class="meta">🇳🇮 Nikaragua · 12.05.2020</p><h3>#10 Piekielne Jezioro Lawy | Wulkan Masaya Nikaragua | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="sv" data-more>
+  <button class="yt" data-id="wT-bbaieZSI" aria-label="Odtwórz: #11 Salwador - Tu Rządzą Gangi, Przemoc i Strach | San Salvador | Ameryka Centralna">
+    <img class="thumb" src="thumbs/wT-bbaieZSI.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">9:42</span>
+  </button>
+  <div class="card-body"><p class="meta">🇸🇻 Salwador · 07.06.2020</p><h3>#11 Salwador - Tu Rządzą Gangi, Przemoc i Strach | San Salvador | Ameryka Centralna</h3></div>
+</article>
+<article class="card vcard" data-c="sv" data-more>
+  <button class="yt" data-id="D8fzd568sfs" aria-label="Odtwórz: #12 Czy Tu Jest Bezpiecznie? | Salwador Juayua | 4K">
+    <img class="thumb" src="thumbs/D8fzd568sfs.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">7:57</span>
+  </button>
+  <div class="card-body"><p class="meta">🇸🇻 Salwador · 21.06.2020</p><h3>#12 Czy Tu Jest Bezpiecznie? | Salwador Juayua | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="sv" data-more>
+  <button class="yt" data-id="Jpe-JITSIYE" aria-label="Odtwórz: #13 W Głębi Lasu Deszczowego | Salwador 4K">
+    <img class="thumb" src="thumbs/Jpe-JITSIYE.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">13:46</span>
+  </button>
+  <div class="card-body"><p class="meta">🇸🇻 Salwador · 27.09.2020</p><h3>#13 W Głębi Lasu Deszczowego | Salwador 4K</h3></div>
+</article>
+<article class="card vcard" data-c="gt" data-more>
+  <button class="yt" data-id="ahD_wBBBwn4" aria-label="Odtwórz: #14 Co Jedzą Weganie w Podróży? | Weganizm w Gwatemali | Antigua | 4K">
+    <img class="thumb" src="thumbs/ahD_wBBBwn4.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">12:05</span>
+  </button>
+  <div class="card-body"><p class="meta">🇬🇹 Gwatemala · 11.10.2020</p><h3>#14 Co Jedzą Weganie w Podróży? | Weganizm w Gwatemali | Antigua | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="gt" data-more>
+  <button class="yt" data-id="u2ng-fKx4Ws" aria-label="Odtwórz: #15 Magiczna Wioska Hipisów w Gwatemali | San Marcos La Laguna 4K">
+    <img class="thumb" src="thumbs/u2ng-fKx4Ws.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">12:16</span>
+  </button>
+  <div class="card-body"><p class="meta">🇬🇹 Gwatemala · 25.10.2020</p><h3>#15 Magiczna Wioska Hipisów w Gwatemali | San Marcos La Laguna 4K</h3></div>
+</article>
+<article class="card vcard" data-c="gt" data-more>
+  <button class="yt" data-id="VYQbfovzJX8" aria-label="Odtwórz: #16 Wyprawa w Głąb Gwatemali | Pomnik Przyrody w Semuc Champey | 4K">
+    <img class="thumb" src="thumbs/VYQbfovzJX8.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">9:09</span>
+  </button>
+  <div class="card-body"><p class="meta">🇬🇹 Gwatemala · 15.11.2020</p><h3>#16 Wyprawa w Głąb Gwatemali | Pomnik Przyrody w Semuc Champey | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="gt" data-more>
+  <button class="yt" data-id="ulBfsb9cmk4" aria-label="Odtwórz: #17 Tikal - Ruiny Miasta Majów w Gwatemali | Flores 4K">
+    <img class="thumb" src="thumbs/ulBfsb9cmk4.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">9:15</span>
+  </button>
+  <div class="card-body"><p class="meta">🇬🇹 Gwatemala · 28.11.2020</p><h3>#17 Tikal - Ruiny Miasta Majów w Gwatemali | Flores 4K</h3></div>
+</article>
+<article class="card vcard" data-c="mx" data-more>
+  <button class="yt" data-id="RTrMZgT2M_s" aria-label="Odtwórz: #18 Meksykańskie Wybrzeże, Cenoty i Turkusowa Laguna | Tulum, Bacalar, Jukatan 4K">
+    <img class="thumb" src="thumbs/RTrMZgT2M_s.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">11:44</span>
+  </button>
+  <div class="card-body"><p class="meta">🇲🇽 Meksyk · 19.12.2020</p><h3>#18 Meksykańskie Wybrzeże, Cenoty i Turkusowa Laguna | Tulum, Bacalar, Jukatan 4K</h3></div>
+</article>
+<article class="card vcard" data-c="mx" data-more>
+  <button class="yt" data-id="d6lqoi_hqGc" aria-label="Odtwórz: #19 Meksyk - Wydaliśmy Nasze Ostatnie Pieniądze | Playa del Carmen 4K">
+    <img class="thumb" src="thumbs/d6lqoi_hqGc.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">8:29</span>
+  </button>
+  <div class="card-body"><p class="meta">🇲🇽 Meksyk · 02.01.2021</p><h3>#19 Meksyk - Wydaliśmy Nasze Ostatnie Pieniądze | Playa del Carmen 4K</h3></div>
+</article>
+      </div>
+      <div class="more"><button class="btn btn-light" id="moreBtn" aria-expanded="false" aria-controls="caGrid" style="box-shadow:var(--shadow)">Pokaż wszystkie 20 odcinków ↓</button></div>
+    </div>
+  </section>
+
+  <section id="eu" class="series countries" aria-labelledby="eu-h">
+    <div class="wrap">
+      <div class="series-head">
+        <div><span class="eyebrow">Seria · <span class="count">3 filmy</span></span>
+        <h2 id="eu-h">Europa rowerem i samochodem</h2>
+        <p class="lead">Francja, Belgia, Luksemburg i Andora – podróż w czasie pandemii.</p></div>
+        <a class="btn btn-green" href="https://www.youtube.com/playlist?list=PLPaMIRjW6qqufkgJL_aNsanSjry60zTYL" target="_blank" rel="noopener">Cała playlista na YouTube →</a>
+      </div>
+      <div class="grid3">
+<article class="card vcard" data-c="eu">
+  <button class="yt" data-id="jc_LfYdyJfc" aria-label="Odtwórz: Jak Wygląda Podróż w Czasie Pandemii? Europa Samochodem i Rowerem | 4K">
+    <img class="thumb" src="thumbs/jc_LfYdyJfc.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">3:32</span>
+  </button>
+  <div class="card-body"><p class="meta">🇪🇺 Europa · 23.07.2020</p><h3>Jak Wygląda Podróż w Czasie Pandemii? Europa Samochodem i Rowerem | 4K</h3></div>
+</article>
+<article class="card vcard" data-c="eu">
+  <button class="yt" data-id="kVdBprxFOuM" aria-label="Odtwórz: Francja, Andora, Belgia, Luksemburg - rowerem i samochodem.">
+    <img class="thumb" src="thumbs/kVdBprxFOuM.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">0:38</span>
+  </button>
+  <div class="card-body"><p class="meta">🇪🇺 Europa · 06.02.2021</p><h3>Francja, Andora, Belgia, Luksemburg - rowerem i samochodem.</h3></div>
+</article>
+<article class="card vcard" data-c="eu">
+  <button class="yt" data-id="3VxS5J5BwR4" aria-label="Odtwórz: Weekend w Luksemburgu i Wycieczka Rowerowa do Schengen | 4K">
+    <img class="thumb" src="thumbs/3VxS5J5BwR4.jpg" alt="" loading="lazy" width="480" height="360">
+    <span class="play"></span><span class="dur">10:08</span>
+  </button>
+  <div class="card-body"><p class="meta">🇪🇺 Europa · 20.02.2021</p><h3>Weekend w Luksemburgu i Wycieczka Rowerowa do Schengen | 4K</h3></div>
+</article>
+      </div>
+    </div>
+  </section>
+
+  <section id="mapa" aria-labelledby="m-h">
+    <div class="wrap map-wrap">
+      <div>
+        <div class="map-card">
+          <span class="szkic">SZKIC · mapa poglądowa</span>
+          <svg viewBox="0 0 400 580" role="img" aria-labelledby="mapTitle mapDesc">
+            <title id="mapTitle">Uproszczona mapa obu Ameryk z trasami</title>
+            <desc id="mapDesc">Na czerwono trasa z filmów: Dominikana, Kostaryka, Nikaragua, Salwador, Gwatemala, Meksyk. Na zielono, przerywaną linią, trasa w planach: Urugwaj, Argentyna, Panama, Kostaryka, Salwador, Floryda. Kształty przybliżone.</desc>
+            <path fill="#95d5b2" stroke="#52b788" stroke-width="2" stroke-linejoin="round" d="M20 0 L24 55 L52 99 L80 148 L100 165 L132 187 L152 192 L168 203 L180 220 L200 231 L212 231 L232 209 L272 220 L320 275 L380 313 L360 396 L328 429 L292 467 L272 495 L248 561 L232 550 L228 495 L236 440 L240 374 L212 341 L196 302 L200 275 L208 247 L204 238 L188 230 L184 214 L188 192 L172 159 L160 159 L132 132 L160 116 L188 116 L196 138 L202 128 L200 105 L216 82 L240 44 L256 27 L280 11 L290 0 Z"/>
+            <path class="dash" d="M295 467 L264 484 L202 226 L184 221 L163 200 L199 133" stroke="#2D6A4F" stroke-width="3" fill="none" stroke-dasharray="7 6" stroke-linejoin="round"/>
+            <path d="M240 173 L184 221 L176 210 L163 200 L160 182 L170 164" stroke="#E63946" stroke-width="3.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="295" cy="467" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"/><circle cx="264" cy="484" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"/><circle cx="202" cy="226" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"/><circle cx="184" cy="221" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"/><circle cx="163" cy="200" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"/><circle cx="199" cy="133" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"/><circle cx="240" cy="173" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><circle cx="184" cy="221" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><circle cx="176" cy="210" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><circle cx="163" cy="200" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><circle cx="160" cy="182" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><circle cx="170" cy="164" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/>
+            <rect x="128" y="140" width="130" height="96" rx="10" fill="none" stroke="#2B2118" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <g font-family="Nunito, system-ui, sans-serif" font-weight="800" font-size="13" fill="#2B2118"><text x="307" y="467">Urugwaj</text><text x="186" y="502">Argentyna</text>
+<text x="211" y="137">Floryda</text><text x="216" y="242">Panama</text><text x="134" y="252" font-size="11">↓ powiększenie niżej</text></g>
+          </svg>
+          <div class="legend"><span><i style="background:#E63946"></i>trasa z filmów (2020)</span><span><i style="background:#fff;border:3px solid #2D6A4F"></i>w planach</span></div>
+        </div>
+        <div class="inset">
+          <svg viewBox="0 0 420 270" role="img" aria-label="Powiększenie: trasa po Ameryce Środkowej z filmów, w kolejności odcinków">
+            <path d="M0 91 L14 95 L56 90 L63 56 L112 49 L105 91 L94 126 L126 127 L164 140 L160 196 L175 217 L217 217 L245 231 L245 245 L210 248 L196 238 L130 210 L105 168 L49 154 L14 126 L0 126Z" fill="#95d5b2" stroke="#52b788" stroke-width="2"/>
+            <path d="M288 73 L311 71 L328 71 L351 76 L372 90 L368 95 L343 95 L322 97 L288 92Z" fill="#95d5b2" stroke="#52b788" stroke-width="2"/>
+            <path class="dash" d="M351 91 L153 211 L126 183 L81 158 L71 113 L105 67" stroke="#E63946" stroke-width="3" fill="none" stroke-dasharray="8 5"/>
+            <g font-family="Nunito, system-ui, sans-serif" font-weight="800" font-size="13" fill="#2B2118"><circle cx="351" cy="91" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><text x="281" y="77">1 Dominikana</text><circle cx="153" cy="211" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><text x="165" y="217">2 Kostaryka</text><circle cx="126" cy="183" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><text x="138" y="187">3 Nikaragua</text><circle cx="81" cy="158" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><text x="11" y="180">4 Salwador</text><circle cx="71" cy="113" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><text x="-9" y="117">5 Gwatemala</text><circle cx="105" cy="67" r="6" fill="#E63946" stroke="#fff" stroke-width="2"/><text x="117" y="71">6 Meksyk</text></g>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">Mapa</span>
+        <h2 id="m-h">Gdzie byliśmy, dokąd jedziemy</h2>
+        <p class="lead">Docelowo interaktywna mapa (MapLibre): kliknij kraj i zobacz filmy nagrane właśnie tam.</p>
+        <div class="cgroup"><h3>Z naszych filmów</h3>
+          <div class="cgrid cgrid2">
+            <a class="country" href="#ca" data-filter="do"><span class="flag" aria-hidden="true">🇩🇴</span><div><h3>Dominikana</h3><span>1 odcinek</span></div></a><a class="country" href="#ca" data-filter="cr"><span class="flag" aria-hidden="true">🇨🇷</span><div><h3>Kostaryka</h3><span>3 odcinki</span></div></a><a class="country" href="#ca" data-filter="ni"><span class="flag" aria-hidden="true">🇳🇮</span><div><h3>Nikaragua</h3><span>6 odcinków</span></div></a><a class="country" href="#ca" data-filter="sv"><span class="flag" aria-hidden="true">🇸🇻</span><div><h3>Salwador</h3><span>3 odcinki</span></div></a><a class="country" href="#ca" data-filter="gt"><span class="flag" aria-hidden="true">🇬🇹</span><div><h3>Gwatemala</h3><span>4 odcinki</span></div></a><a class="country" href="#ca" data-filter="mx"><span class="flag" aria-hidden="true">🇲🇽</span><div><h3>Meksyk</h3><span>2 odcinki</span></div></a>
+            <a class="country" href="#eu" style="grid-column:1/-1"><span class="flag" aria-hidden="true">🇫🇷🇧🇪🇱🇺🇦🇩</span><div><h3>Francja · Belgia · Luksemburg · Andora</h3><span>3 filmy z Europy</span></div></a>
+          </div>
+        </div>
+        <div class="cgroup"><h3>W planach</h3>
+          <div class="cgrid cgrid2">
+            <div class="country plan"><span class="flag" aria-hidden="true">🇺🇾</span><div><h3>Urugwaj</h3><span>jeszcze bez filmów</span></div><b class="num">w planach</b></div><div class="country plan"><span class="flag" aria-hidden="true">🇦🇷</span><div><h3>Argentyna</h3><span>jeszcze bez filmów</span></div><b class="num">w planach</b></div><div class="country plan"><span class="flag" aria-hidden="true">🇵🇦</span><div><h3>Panama</h3><span>jeszcze bez filmów</span></div><b class="num">w planach</b></div><div class="country plan"><span class="flag" aria-hidden="true">🇨🇷</span><div><h3>Kostaryka</h3><span>jeszcze bez filmów</span></div><b class="num">w planach</b></div><div class="country plan"><span class="flag" aria-hidden="true">🇸🇻</span><div><h3>Salwador</h3><span>jeszcze bez filmów</span></div><b class="num">w planach</b></div><div class="country plan"><span class="flag" aria-hidden="true">🇺🇸</span><div><h3>Floryda</h3><span>jeszcze bez filmów</span></div><b class="num">w planach</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-nas" aria-labelledby="a-h">
+    <div class="wrap about">
+      <div class="family">
+        <svg viewBox="0 0 420 260" role="img" aria-label="Ilustracja: czteroosobowa rodzina, dwie córki">
+          <rect x="0" y="200" width="420" height="60" rx="30" fill="#f6dfb8"/><circle cx="340" cy="60" r="34" fill="#FFD166"/>
+          <rect x="70" y="90" width="58" height="112" rx="29" fill="#2D6A4F"/><circle cx="99" cy="68" r="26" fill="#F4A261"/><rect x="54" y="104" width="26" height="54" rx="10" fill="#E63946"/>
+          <rect x="150" y="96" width="56" height="106" rx="28" fill="#E63946"/><circle cx="178" cy="74" r="25" fill="#E9A06B"/>
+          <rect x="232" y="132" width="40" height="70" rx="20" fill="#FF9F1C"/><circle cx="252" cy="116" r="19" fill="#F4A261"/><text x="252" y="176" text-anchor="middle" font-family="Baloo 2, system-ui" font-weight="800" font-size="18" fill="#fff">5</text>
+          <rect x="292" y="150" width="34" height="52" rx="17" fill="#52B788"/><circle cx="309" cy="137" r="16" fill="#E9A06B"/><text x="309" y="185" text-anchor="middle" font-family="Baloo 2, system-ui" font-weight="800" font-size="16" fill="#fff">3</text>
+          <g font-family="Nunito, system-ui" font-weight="800" font-size="14"><rect x="20" y="10" width="82" height="32" rx="16" fill="#fff"/><text x="61" y="31" text-anchor="middle" fill="#2B2118">Cześć!</text><rect x="130" y="14" width="74" height="32" rx="16" fill="#fff"/><text x="167" y="35" text-anchor="middle" fill="#2B2118">Hello!</text><rect x="222" y="40" width="72" height="32" rx="16" fill="#fff"/><text x="258" y="61" text-anchor="middle" fill="#2B2118">¡Hola!</text></g>
+        </svg>
+      </div>
+      <div>
+        <span class="eyebrow">O nas</span>
+        <h2 id="a-h">Chilimango to my – Marta i Bartek</h2>
+        <p class="lead">Podróżujemy, kręcimy filmy, jemy roślinnie i podróżujemy świadomie. Byliśmy z plecakiem w Ameryce Środkowej, a po Europie jeździliśmy rowerem i samochodem.</p>
+        <p class="lead">Teraz jest nas czworo: mamy dwie córki, 3 i 5 lat. W domu mówimy po polsku, angielsku i hiszpańsku, a nagrywamy kamerą Insta360.</p>
+        <div class="tri" aria-label="Języki"><span>🇵🇱 polski</span><span>🇬🇧 English</span><span>🇪🇸 español</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="sub-h">
+    <div class="wrap">
+      <div class="sub">
+        <div><h2 id="sub-h">Nie przegap kolejnej wyprawy</h2><p>Subskrybuj kanał, a nowe odcinki zobaczysz od razu, także te z wyprawy we czwórkę.</p></div>
+        <div><a class="btn btn-light" href="https://www.youtube.com/@Chilimango?sub_confirmation=1" target="_blank" rel="noopener"><svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" rx="4" fill="#E63946"/><path d="M9 4.5v7l6-3.5z" fill="#fff"/></svg>Subskrybuj @Chilimango</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="logo" href="#" style="color:#fff"><span><span class="chili">Chili</span><span class="mango">mango</span></span></a>
+        <p>Filmy z podróży Marty i Bartka, a teraz także z dwiema małymi podróżniczkami.</p>
+        <div class="social">
+          <a href="https://www.youtube.com/@Chilimango" target="_blank" rel="noopener"><svg width="20" height="14" viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" rx="4" fill="#E63946"/><path d="M9 4.5v7l6-3.5z" fill="#fff"/></svg>YouTube</a>
+          <a href="https://www.instagram.com/_chilimango_/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="6" fill="none" stroke="#FF9F1C" stroke-width="2.5"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="#FF9F1C" stroke-width="2.5"/><circle cx="17.5" cy="6.5" r="1.4" fill="#FF9F1C"/></svg>Instagram</a>
+          <a href="https://www.facebook.com/chilimangoworld" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <div><h3>Serie</h3><ul><li><a href="#ca">Ameryka Środkowa z plecakiem</a></li><li><a href="#eu">Europa rowerem i samochodem</a></li><li><a href="#mapa">Mapa</a></li><li><a href="#o-nas">O nas</a></li></ul></div>
+      <div><h3>Kontakt</h3><ul><li><a href="#">kontakt@chilimango.pl <small>(placeholder)</small></a></li><li><a href="#">Współpraca i media</a></li><li><a href="#">Polityka prywatności</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 Chilimango · chilimango.pl</span><span>Szkic strony głównej v0.2</span></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.lang button').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');}));
+const burger=document.querySelector('.burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Zamknij menu':'Otwórz menu');});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}));
+let s=0;const tc=document.getElementById('tc');let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
+setInterval(()=>{if(paused)return;s++;tc.textContent=[s/3600|0,(s/60|0)%60,s%60].map(n=>String(n).padStart(2,'0')).join(':');},1000);
+const pb=document.getElementById('pauseBtn');
+pb.addEventListener('click',()=>{paused=!paused;document.body.classList.toggle('paused',paused);pb.setAttribute('aria-pressed',paused);pb.textContent=paused?'▶ Wznów animację':'❚❚ Zatrzymaj animację';});
+// lite-youtube facade: iframe (youtube-nocookie) only after click
+document.querySelectorAll('.yt[data-id]').forEach(b=>b.addEventListener('click',()=>{
+  const f=document.createElement('iframe');
+  f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.id+'?autoplay=1&rel=0';
+  f.title=b.getAttribute('aria-label').replace('Odtwórz: ','');
+  f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;
+  const d=document.createElement('div');d.className='yt';d.appendChild(f);b.replaceWith(d);
+}));
+// series: show more + country filter
+const cards=[...document.querySelectorAll('#caGrid .vcard')];let expanded=false,filter='*';
+const moreBtn=document.getElementById('moreBtn');
+function render(){cards.forEach(c=>{const ok=filter==='*'?(expanded||!c.hasAttribute('data-more')):c.dataset.c===filter;c.hidden=!ok;});moreBtn.parentElement.hidden=filter!=='*'||expanded;}
+moreBtn.addEventListener('click',()=>{expanded=true;moreBtn.setAttribute('aria-expanded','true');render();});
+function setFilter(f){filter=f;document.querySelectorAll('.chips button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.f===f));render();}
+document.querySelectorAll('.chips button').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.f)));
+document.querySelectorAll('[data-filter]').forEach(a=>a.addEventListener('click',()=>setFilter(a.dataset.filter)));
+render();
+</script>
+</body>
+</html>
