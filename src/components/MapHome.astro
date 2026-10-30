@@ -1,0 +1,224 @@
+---
+/** Sekcja mapy ze szkicu v2 (SVG poglądowe, bez płatnego API). */
+---
+
+<section id="mapa" aria-labelledby="m-h">
+  <div class="wrap map-wrap">
+    <div>
+      <div class="map-card">
+        <span class="szkic">SZKIC · mapa poglądowa</span>
+        <svg viewBox="0 0 400 580" role="img" aria-labelledby="mapTitle mapDesc">
+          <title id="mapTitle">Uproszczona mapa obu Ameryk z trasami</title>
+          <desc id="mapDesc"
+            >Na czerwono trasa z filmów: Dominikana, Kostaryka, Nikaragua, Salwador,
+            Gwatemala, Meksyk. Na zielono, przerywaną linią, trasa w planach.</desc
+          >
+          <path
+            fill="#95d5b2"
+            stroke="#52b788"
+            stroke-width="2"
+            stroke-linejoin="round"
+            d="M20 0 L24 55 L52 99 L80 148 L100 165 L132 187 L152 192 L168 203 L180 220 L200 231 L212 231 L232 209 L272 220 L320 275 L380 313 L360 396 L328 429 L292 467 L272 495 L248 561 L232 550 L228 495 L236 440 L240 374 L212 341 L196 302 L200 275 L208 247 L204 238 L188 230 L184 214 L188 192 L172 159 L160 159 L132 132 L160 116 L188 116 L196 138 L202 128 L200 105 L216 82 L240 44 L256 27 L280 11 L290 0 Z"
+          ></path>
+          <path
+            class="dash"
+            d="M295 467 L264 484 L202 226 L184 221 L163 200 L199 133"
+            stroke="#2D6A4F"
+            stroke-width="3"
+            fill="none"
+            stroke-dasharray="7 6"
+            stroke-linejoin="round"></path>
+          <path
+            d="M240 173 L184 221 L176 210 L163 200 L160 182 L170 164"
+            stroke="#E63946"
+            stroke-width="3.5"
+            fill="none"
+            stroke-linejoin="round"
+            stroke-linecap="round"></path>
+          <circle cx="295" cy="467" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"
+          ></circle>
+          <circle cx="264" cy="484" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"
+          ></circle>
+          <circle cx="202" cy="226" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"
+          ></circle>
+          <circle cx="184" cy="221" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"
+          ></circle>
+          <circle cx="163" cy="200" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"
+          ></circle>
+          <circle cx="199" cy="133" r="7" fill="#fff" stroke="#2D6A4F" stroke-width="3"
+          ></circle>
+          <circle cx="240" cy="173" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+          ></circle>
+          <circle cx="184" cy="221" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+          ></circle>
+          <circle cx="176" cy="210" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+          ></circle>
+          <circle cx="163" cy="200" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+          ></circle>
+          <circle cx="160" cy="182" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+          ></circle>
+          <circle cx="170" cy="164" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+          ></circle>
+          <rect
+            x="128"
+            y="140"
+            width="130"
+            height="96"
+            rx="10"
+            fill="none"
+            stroke="#2B2118"
+            stroke-width="1.5"
+            stroke-dasharray="4 4"></rect>
+          <g
+            font-family="Nunito, system-ui, sans-serif"
+            font-weight="800"
+            font-size="13"
+            fill="#2B2118"
+          >
+            <text x="307" y="467">Urugwaj</text>
+            <text x="186" y="502">Argentyna</text>
+            <text x="211" y="137">Floryda</text>
+            <text x="216" y="242">Panama</text>
+            <text x="134" y="252" font-size="11">↓ powiększenie niżej</text>
+          </g>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#E63946"></i>trasa z filmów (2020)</span>
+          <span><i style="background:#fff;border:3px solid #2D6A4F"></i>w planach</span>
+        </div>
+      </div>
+      <div class="inset">
+        <svg
+          viewBox="0 0 420 270"
+          role="img"
+          aria-label="Powiększenie: trasa po Ameryce Środkowej z filmów, w kolejności odcinków"
+        >
+          <path
+            d="M0 91 L14 95 L56 90 L63 56 L112 49 L105 91 L94 126 L126 127 L164 140 L160 196 L175 217 L217 217 L245 231 L245 245 L210 248 L196 238 L130 210 L105 168 L49 154 L14 126 L0 126Z"
+            fill="#95d5b2"
+            stroke="#52b788"
+            stroke-width="2"></path>
+          <path
+            d="M288 73 L311 71 L328 71 L351 76 L372 90 L368 95 L343 95 L322 97 L288 92Z"
+            fill="#95d5b2"
+            stroke="#52b788"
+            stroke-width="2"></path>
+          <path
+            class="dash"
+            d="M351 91 L153 211 L126 183 L81 158 L71 113 L105 67"
+            stroke="#E63946"
+            stroke-width="3"
+            fill="none"
+            stroke-dasharray="8 5"></path>
+          <g
+            font-family="Nunito, system-ui, sans-serif"
+            font-weight="800"
+            font-size="13"
+            fill="#2B2118"
+          >
+            <circle cx="351" cy="91" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+            ></circle>
+            <text x="281" y="77">1 Dominikana</text>
+            <circle cx="153" cy="211" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+            ></circle>
+            <text x="165" y="217">2 Kostaryka</text>
+            <circle cx="126" cy="183" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+            ></circle>
+            <text x="138" y="187">3 Nikaragua</text>
+            <circle cx="81" cy="158" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+            ></circle>
+            <text x="11" y="180">4 Salwador</text>
+            <circle cx="71" cy="113" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+            ></circle>
+            <text x="-9" y="117">5 Gwatemala</text>
+            <circle cx="105" cy="67" r="6" fill="#E63946" stroke="#fff" stroke-width="2"
+            ></circle>
+            <text x="117" y="71">6 Meksyk</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">Mapa</span>
+      <h2 id="m-h">Gdzie byliśmy, dokąd jedziemy</h2>
+      <p class="lead">
+        Docelowo interaktywna mapa (MapLibre): kliknij kraj i zobacz filmy nagrane właśnie tam.
+      </p>
+      <div class="cgroup">
+        <h3>Z naszych filmów</h3>
+        <div class="cgrid cgrid2">
+          <a class="country" href="#ca" data-filter="do"
+            ><span class="flag" aria-hidden="true">🇩🇴</span><div><h3>Dominikana</h3><span
+              >1 odcinek</span
+            ></div></a
+          >
+          <a class="country" href="#ca" data-filter="cr"
+            ><span class="flag" aria-hidden="true">🇨🇷</span><div><h3>Kostaryka</h3><span
+              >3 odcinki</span
+            ></div></a
+          >
+          <a class="country" href="#ca" data-filter="ni"
+            ><span class="flag" aria-hidden="true">🇳🇮</span><div><h3>Nikaragua</h3><span
+              >6 odcinków</span
+            ></div></a
+          >
+          <a class="country" href="#ca" data-filter="sv"
+            ><span class="flag" aria-hidden="true">🇸🇻</span><div><h3>Salwador</h3><span
+              >3 odcinki</span
+            ></div></a
+          >
+          <a class="country" href="#ca" data-filter="gt"
+            ><span class="flag" aria-hidden="true">🇬🇹</span><div><h3>Gwatemala</h3><span
+              >4 odcinki</span
+            ></div></a
+          >
+          <a class="country" href="#ca" data-filter="mx"
+            ><span class="flag" aria-hidden="true">🇲🇽</span><div><h3>Meksyk</h3><span
+              >2 odcinki</span
+            ></div></a
+          >
+          <a class="country" href="#eu" style="grid-column:1/-1"
+            ><span class="flag" aria-hidden="true">🇫🇷🇧🇪🇱🇺🇦🇩</span><div
+              ><h3>Francja · Belgia · Luksemburg · Andora</h3><span>3 filmy z Europy</span></div
+            ></a
+          >
+        </div>
+      </div>
+      <div class="cgroup">
+        <h3>W planach</h3>
+        <div class="cgrid cgrid2">
+          <div class="country plan"
+            ><span class="flag" aria-hidden="true">🇺🇾</span><div><h3>Urugwaj</h3><span
+              >jeszcze bez filmów</span
+            ></div><b class="num">w planach</b></div
+          >
+          <div class="country plan"
+            ><span class="flag" aria-hidden="true">🇦🇷</span><div><h3>Argentyna</h3><span
+              >jeszcze bez filmów</span
+            ></div><b class="num">w planach</b></div
+          >
+          <div class="country plan"
+            ><span class="flag" aria-hidden="true">🇵🇦</span><div><h3>Panama</h3><span
+              >jeszcze bez filmów</span
+            ></div><b class="num">w planach</b></div
+          >
+          <div class="country plan"
+            ><span class="flag" aria-hidden="true">🇨🇷</span><div><h3>Kostaryka</h3><span
+              >jeszcze bez filmów</span
+            ></div><b class="num">w planach</b></div
+          >
+          <div class="country plan"
+            ><span class="flag" aria-hidden="true">🇸🇻</span><div><h3>Salwador</h3><span
+              >jeszcze bez filmów</span
+            ></div><b class="num">w planach</b></div
+          >
+          <div class="country plan"
+            ><span class="flag" aria-hidden="true">🇺🇸</span><div><h3>Floryda</h3><span
+              >jeszcze bez filmów</span
+            ></div><b class="num">w planach</b></div
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
