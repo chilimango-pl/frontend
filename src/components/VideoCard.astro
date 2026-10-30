@@ -10,19 +10,28 @@ import {
 interface Props {
   video: Video;
   index?: number;
-  variant?: "grid" | "feature";
+  variant?: "grid" | "feature" | "episode";
+  dateLabel?: string;
+  featured?: boolean;
 }
 
-const { video, index = 0, variant = "grid" } = Astro.props;
+const { video, index = 0, variant = "grid", dateLabel = "", featured = false } = Astro.props;
 const thumb = `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`;
 const duration = durationFor(video);
 const country = countryForVideo(video);
-const collapsed = initiallyCollapsed(index, video.playlist);
+const collapsed = variant === "episode" ? false : initiallyCollapsed(index, video.playlist);
 const ariaLabel = `Odtwórz: ${video.title}`;
 ---
 
 <article
-  class:list={["card", "vcard", "video-card", variant === "feature" && "video-card--feature"]}
+  class:list={[
+    "card",
+    "vcard",
+    "video-card",
+    variant === "feature" && "video-card--feature",
+    variant === "episode" && "episode",
+    featured && "episode-feature",
+  ]}
   data-yt-facade
   data-youtube-id={video.youtubeId}
   data-c={country}
@@ -31,21 +40,32 @@ const ariaLabel = `Odtwórz: ${video.title}`;
 >
   <div class="video-card__player yt">
     <img
-      class="video-card__thumb thumb"
+      class:list={["video-card__thumb", "thumb", variant === "episode" && "episode-thumb"]}
       src={thumb}
       alt=""
       width="480"
       height="360"
-      loading={variant === "feature" ? "eager" : "lazy"}
+      loading={variant === "feature" || featured ? "eager" : "lazy"}
     />
     <button type="button" class="video-card__play play" aria-label={ariaLabel}>
     </button>
-    {duration && <span class="dur">{duration}</span>}
+    {duration && variant !== "episode" && <span class="dur">{duration}</span>}
   </div>
   {
     variant === "grid" && (
       <div class="card-body">
         <p class="meta">{metaLine(video)}</p>
+        <h3>{video.title}</h3>
+        <p class="video-card__notice">
+          Odtworzenie ładuje YouTube i może zapisać ciasteczka YouTube.
+        </p>
+      </div>
+    )
+  }
+  {
+    variant === "episode" && (
+      <div>
+        <p class="episode-date">{dateLabel}</p>
         <h3>{video.title}</h3>
         <p class="video-card__notice">
           Odtworzenie ładuje YouTube i może zapisać ciasteczka YouTube.

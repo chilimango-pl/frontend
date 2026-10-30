@@ -1,0 +1,42 @@
+---
+import { videos } from "../data/videos";
+import { formatPublishedOn, latestDatedVideos } from "../lib/latestVideos";
+import VideoCard from "./VideoCard.astro";
+
+const latest = latestDatedVideos(videos, 3);
+const [feature, ...rest] = latest;
+---
+
+<section id="filmy" aria-labelledby="filmy-h">
+  <div class="wrap">
+    <div class="row-head">
+      <h2 id="filmy-h">Najnowsze odcinki</h2>
+      <a href="https://www.youtube.com/@Chilimango" target="_blank" rel="noopener"
+        >Wszystkie na YouTube</a
+      >
+    </div>
+    <div class="episodes">
+      {
+        feature && (
+          <VideoCard
+            video={feature}
+            variant="episode"
+            featured
+            dateLabel={formatPublishedOn(feature.publishedOn!)}
+          />
+        )
+      }
+      <div class="episodes-side">
+        {
+          rest.map((video) => (
+            <VideoCard
+              video={video}
+              variant="episode"
+              dateLabel={formatPublishedOn(video.publishedOn!)}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

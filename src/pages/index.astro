@@ -3,22 +3,18 @@ import AboutHome from "../components/AboutHome.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
-import MapHome from "../components/MapHome.astro";
-import SeriesAmeryka from "../components/SeriesAmeryka.astro";
-import SeriesEuropa from "../components/SeriesEuropa.astro";
-import SubscribeCta from "../components/SubscribeCta.astro";
+import LatestEpisodes from "../components/LatestEpisodes.astro";
+import VisitedPlaces from "../components/VisitedPlaces.astro";
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Chilimango – filmy z podróży">
+<Base title="Chilimango – rodzina w podróży">
   <Header />
   <main id="main">
     <Hero />
-    <SeriesAmeryka />
-    <SeriesEuropa />
-    <MapHome />
+    <LatestEpisodes />
+    <VisitedPlaces />
     <AboutHome />
-    <SubscribeCta />
   </main>
   <Footer />
 </Base>

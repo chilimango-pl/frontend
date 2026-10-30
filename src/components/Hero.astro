@@ -1,82 +1,23 @@
 ---
-import VideoCard from "./VideoCard.astro";
-import { videosByPlaylist } from "../data/videos";
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 
-const featured = videosByPlaylist("ameryka")[0];
+const heroFile = fileURLToPath(new URL("../../public/hero.jpg", import.meta.url));
+const hasHeroPhoto = existsSync(heroFile);
 ---
 
 <section class="hero" aria-labelledby="hero-h">
   <div class="wrap">
-    <div class="hero-frame" id="heroFrame">
-      <svg
-        class="waves"
-        width="200%"
-        height="120"
-        viewBox="0 0 2400 120"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-        ><path
-          d="M0 60 Q150 0 300 60 T600 60 T900 60 T1200 60 T1500 60 T1800 60 T2100 60 T2400 60 V120 H0Z"
-          fill="#fff"></path></svg
-      >
-      <div class="rec" aria-hidden="true">
-        <span><span class="dot"></span>REC · 360°</span><span id="tc">00:00:00</span>
+    <div class:list={[hasHeroPhoto && "hero-split"]}>
+      <div>
+        <h1 id="hero-h">Chilimango</h1>
+        <p class="hero-italic">rodzina w podróży</p>
+        <p class="hero-lead">
+          Podróżujemy, kręcimy filmy, jemy roślinnie i podróżujemy świadomie.
+        </p>
+        <a class="btn-ink" href="#filmy">Oglądaj najnowszy</a>
       </div>
-      <div class="corners" aria-hidden="true"></div>
-      <div class="hero-grid">
-        <div class="hero-content">
-          <span class="eyebrow" style="background:#fff3;color:#fff"
-            >Filmy z podróży · kanał @Chilimango</span
-          >
-          <h1 id="hero-h">Chilimango</h1>
-          <p class="hero-tagline">Filmy z podróży.</p>
-          <p>
-            Na kanale: 3 miesiące z plecakiem po Ameryce Środkowej i Europa rowerem
-            i samochodem. Podróżujemy, kręcimy filmy i jemy roślinnie.
-          </p>
-          <div class="ctas">
-            <a
-              class="btn btn-red"
-              href="https://www.youtube.com/@Chilimango"
-              target="_blank"
-              rel="noopener"
-              ><svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"
-                ><rect width="22" height="16" rx="4" fill="#fff"></rect><path
-                  d="M9 4.5v7l6-3.5z"
-                  fill="#E63946"></path></svg
-              >Oglądaj na YouTube</a
-            >
-            <a class="btn btn-light" href="#mapa">🗺️ Zobacz trasę</a>
-          </div>
-        </div>
-        <div class="feature">
-          <VideoCard video={featured} variant="feature" />
-          <p>
-            <b>Zacznij tutaj:</b> Ameryka Środkowa i Dominikana z plecakiem w 3 miesiące
-          </p>
-        </div>
-      </div>
-      <button class="pause" id="pauseBtn" type="button" aria-pressed="false"
-        >❚❚ Zatrzymaj animację</button
-      >
+      {hasHeroPhoto && <img class="hero-photo" src="/hero.jpg" alt="" />}
     </div>
   </div>
 </section>
-
-<style>
-  .hero-tagline {
-    font-family: var(--fh);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 800;
-    color: #ffd166;
-    margin: 0 0 0.6em;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-  }
-  .feature .video-card {
-    background: transparent;
-    box-shadow: none;
-  }
-  .feature .video-card__player {
-    border-radius: 16px;
-  }
-</style>
