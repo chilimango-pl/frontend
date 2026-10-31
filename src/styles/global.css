@@ -53,19 +53,27 @@ h2 { font-size: 28px; }
   background: transparent;
   cursor: pointer;
 }
+.video-card__play::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 68px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  border-radius: 14px;
+  background: #ff0000;
+}
 .video-card__play::after {
   content: "";
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 0;
-  height: 0;
-  transform: translate(-40%, -50%);
-  border-left: 18px solid var(--paper);
-  border-top: 11px solid transparent;
-  border-bottom: 11px solid transparent;
-  background: var(--ink);
-  box-shadow: -22px 0 0 14px var(--ink);
+  z-index: 1;
+  transform: translate(-35%, -50%);
+  border-left: 16px solid #fff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
 }
 .video-card__player iframe { width: 100%; aspect-ratio: 16/9; border: 0; }
 .video-card__notice { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
