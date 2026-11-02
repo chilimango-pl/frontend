@@ -44,7 +44,7 @@ One column, content width `880px`, centered. `html lang="pl"`. The layout stacks
 
 Document title: `Chilimango – rodzina w podróży`.
 
-Meta description: `Podróżujemy, kręcimy filmy, jemy roślinnie i podróżujemy świadomie.`
+Meta description: `Kręcimy filmy, jemy roślinnie i podróżujemy świadomie.`
 
 Order:
 
@@ -65,7 +65,7 @@ Left: wordmark linking to `/`. Right: text links `Filmy`, `Gdzie byliśmy`, `O n
 
 Supporting paragraph, ink body color:
 
-`Podróżujemy, kręcimy filmy, jemy roślinnie i podróżujemy świadomie.`
+`Kręcimy filmy, jemy roślinnie i podróżujemy świadomie.`
 
 Button label `Oglądaj najnowszy`. It is an anchor to `#filmy`.
 
@@ -100,7 +100,7 @@ Heading: `O nas`.
 
 Paragraph:
 
-`Chilimango to my, Marta i Bartek. Podróżujemy, kręcimy filmy, jemy roślinnie i podróżujemy świadomie. Odcinki są na kanale @Chilimango.`
+`Chilimango to my, Marta i Bartek. Kręcimy filmy, jemy roślinnie i podróżujemy świadomie. Odcinki są na kanale @Chilimango.`
 
 `@Chilimango` links to `https://www.youtube.com/@Chilimango` with `target="_blank"` and `rel="noopener"`.
 

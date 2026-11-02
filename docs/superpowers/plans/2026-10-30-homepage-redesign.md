@@ -146,7 +146,7 @@ git commit -m "feat: select the three newest dated films"
 
 - [ ] **Step 1: Remove webfonts from Base.astro**
 
-Delete both preconnect links and the Baloo/Nunito stylesheet link. Set the default description to `Podróżujemy, kręcimy filmy, jemy roślinnie i podróżujemy świadomie.` Keep the skip link and `yt-facade.js`. Remove the `homepage.js` script tag.
+Delete both preconnect links and the Baloo/Nunito stylesheet link. Set the default description to `Kręcimy filmy, jemy roślinnie i podróżujemy świadomie.` Keep the skip link and `yt-facade.js`. Remove the `homepage.js` script tag.
 
 - [ ] **Step 2: Replace `src/styles/global.css`**
 
@@ -242,7 +242,7 @@ git commit -m "feat: set the warm-paper page shell"
 
 - [ ] **Step 1: Hero**
 
-`h1` is `Chilimango`. Italic paragraph is `rodzina w podróży`. Lead is `Podróżujemy, kręcimy filmy, jemy roślinnie i podróżujemy świadomie.` Button `Oglądaj najnowszy` links to `#filmy`.
+`h1` is `Chilimango`. Italic paragraph is `rodzina w podróży`. Lead is `Kręcimy filmy, jemy roślinnie i podróżujemy świadomie.` Button `Oglądaj najnowszy` links to `#filmy`.
 
 If `src/../public/hero.jpg` exists at build time (`import.meta` is wrong here; use `existsSync` from `node:fs` on `new URL("../../public/hero.jpg", import.meta.url)`), render `<img class="hero-photo" src="/hero.jpg" alt="">` inside `.hero-split`. If it does not exist, render only the text and no `img`.
 
@@ -270,7 +270,7 @@ Section `id="gdzie-bylismy"`, class `section-rule`. Heading `Gdzie byliśmy`. On
 
 Section `id="o-nas"`, class `section-rule about`. Heading `O nas`. One paragraph:
 
-`Chilimango to my, Marta i Bartek. Podróżujemy, kręcimy filmy, jemy roślinnie i podróżujemy świadomie. Odcinki są na kanale @Chilimango.`
+`Chilimango to my, Marta i Bartek. Kręcimy filmy, jemy roślinnie i podróżujemy świadomie. Odcinki są na kanale @Chilimango.`
 
 The `@Chilimango` link uses the channel URL, `target="_blank"`, `rel="noopener"`. No illustration, language chips, Insta360 sentence, or backpack sentence.
 
